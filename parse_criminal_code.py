@@ -3,7 +3,7 @@ import re
 
 root = etree.Element('root')
 
-with open('ukrf.txt', 'r') as file:
+with open('data/ukrf.txt', 'r') as file:
     lines = file.readlines()
 
 part_iter = iter(range(1,100))

@@ -10,14 +10,14 @@ class RosPravSpider(scrapy.Spider):
         super(RosPravSpider, self).__init__(*args, **kwargs)
         self.current_page = int(start_page)
         self.last_page = int(last_page)
-        self.start_urls = [
-            'https://rospravosudie.com/vidpr-ugolovnoe/etapd-pervaya-instanciya/section-acts/page-{}/'.format(self.current_page)
-        ]
+        self.base_url = 'https://rospravosudie.com/vidpr-ugolovnoe/etapd-pervaya-instanciya/section-acts/page-{}/'
+        self.start_urls = [self.base_url.format(self.current_page)]
         self.pattern = re.compile('\\n|\\t|\\xa0')
+        self.article_count = 0
 
 
     def parse(self, response):
-
+        self.logger.info('PAGE: {}'.format(response.url))
         # follow text links
         for href in response.css('tr td a::attr(href)'):
             yield response.follow(href, self.parse_text)
@@ -26,10 +26,12 @@ class RosPravSpider(scrapy.Spider):
         self.current_page = self.current_page + 1
         while self.current_page <= self.last_page:
             yield response.follow(
-                self.start_urls[0].format(self.current_page),
+                self.base_url.format(self.current_page),
                 callback=self.parse)
 
     def parse_text(self, response):
+        self.article_count += 1
+        self.logger.info('ARTICLE-{count}: {url}'.format(count=self.article_count, url=response.url))
         yield {
             'title': list(map(lambda x: BeautifulSoup(x, 'lxml').get_text(),
             response.css('title::text').extract())),
