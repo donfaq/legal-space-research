@@ -8,8 +8,8 @@ class RosPravSpider(scrapy.Spider):
 
     def __init__(self, start_page, last_page, *args, **kwargs):
         super(RosPravSpider, self).__init__(*args, **kwargs)
-        self.current_page = start_page
-        self.last_page = last_page
+        self.current_page = int(start_page)
+        self.last_page = int(last_page)
         self.start_urls = [
             'https://rospravosudie.com/vidpr-ugolovnoe/etapd-pervaya-instanciya/section-acts/page-{}/'.format(self.current_page)
         ]
@@ -26,7 +26,7 @@ class RosPravSpider(scrapy.Spider):
         self.current_page = self.current_page + 1
         while self.current_page <= self.last_page:
             yield response.follow(
-                '{}/page-{}'.format(self.start_urls[0], self.current_page),
+                self.start_urls[0].format(self.current_page),
                 callback=self.parse)
 
     def parse_text(self, response):
