@@ -5,26 +5,28 @@ import re
 
 class RosPravSpider(scrapy.Spider):
     name = 'rosprav'
-    start_urls = [
-        'https://rospravosudie.com/vidpr-ugolovnoe/etapd-pervaya-instanciya/section-acts'
-    ]
-    page = 1
-    pattern = re.compile('\\n|\\t|\\xa0')
+
+    def __init__(self, start_page, last_page, *args, **kwargs):
+        super(RosPravSpider, self).__init__(*args, **kwargs)
+        self.current_page = start_page
+        self.last_page = last_page
+        self.start_urls = [
+            'https://rospravosudie.com/vidpr-ugolovnoe/etapd-pervaya-instanciya/section-acts/page-{}/'.format(self.current_page)
+        ]
+        self.pattern = re.compile('\\n|\\t|\\xa0')
+
 
     def parse(self, response):
-        last_page = int(
-            response.css('div.pagination li a::text').extract()[-1])
-        self.log('LAST_PAGE: {}'.format(last_page))
 
         # follow text links
         for href in response.css('tr td a::attr(href)'):
             yield response.follow(href, self.parse_text)
 
         # follow pagination links
-        self.page = self.page + 1
-        while self.page <= last_page:
+        self.current_page = self.current_page + 1
+        while self.current_page <= self.last_page:
             yield response.follow(
-                '{}/page-{}'.format(self.start_urls[0], self.page),
+                '{}/page-{}'.format(self.start_urls[0], self.current_page),
                 callback=self.parse)
 
     def parse_text(self, response):
