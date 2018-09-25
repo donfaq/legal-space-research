@@ -4,4 +4,11 @@
 *__pycache__/
 data/
 *.jl
+*.png
+*.jpeg
+*.gexf
+*.html
+*.csv
+tensorboard/
+cc_env/
 models/
