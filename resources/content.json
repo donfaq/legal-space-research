@@ -1,0 +1,42 @@
+{
+  "request": {
+    "filter": null,
+    "filterGroups": null,
+    "customFilterGroups": null,
+    "groups": [],
+    "dateFrom": null,
+    "dateTo": null,
+    "sortOrder": null,
+    "sortField": null,
+    "groupField": null,
+    "joinFrom": null,
+    "joinTo": null,
+    "type": "MULTIQUERY",
+    "multiqueryRequest": {
+      "queryRequests": [
+        {
+          "type": "SQ",
+          "queryId": "97673247-f209-4a23-9f24-22036c88626f",
+          "operator": "AND"
+        }
+      ]
+    },
+    "sorts": [
+      {
+        "field": "score",
+        "order": "desc"
+      }
+    ],
+    "simpleSearchFieldsBundle": "default00",
+    "noOrpho": false,
+    "id": "b46d87c1f1b7fac2473cfde97363f9c3",
+    "shards": [
+      "Все дела"
+    ],
+    "hlColors": [
+      "searchHL0"
+    ],
+    "uid": "a2a6c98f-9d5f-4a59-b084-1fc9cf9de977"
+  },
+  "saveBoostQuery": true
+}

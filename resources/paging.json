@@ -1,0 +1,56 @@
+{
+  "request": {
+    "start": 0,
+    "rows": 10,
+    "uid": "a2a6c98f-9d5f-4a59-b084-1fc9cf9de977",
+    "filter": null,
+    "filterGroups": null,
+    "customFilterGroups": null,
+    "groups": [],
+    "dateFrom": null,
+    "dateTo": null,
+    "sortOrder": null,
+    "sortField": null,
+    "groupField": null,
+    "joinFrom": null,
+    "joinTo": null,
+    "type": "MULTIQUERY",
+    "multiqueryRequest": {
+      "queryRequests": [
+        {
+          "type": "SQ",
+          "queryId": "97673247-f209-4a23-9f24-22036c88626f",
+          "operator": "AND"
+        }
+      ]
+    },
+    "sorts": [
+      {
+        "field": "score",
+        "order": "desc"
+      }
+    ],
+    "simpleSearchFieldsBundle": "default00",
+    "noOrpho": false,
+    "facet": {
+      "field": [
+        "type"
+      ]
+    },
+    "facetLimit": 21,
+    "additionalFields": [
+      "case_user_document_type",
+      "case_user_entry_date",
+      "case_user_doc_result_date",
+      "case_doc_subject_rf",
+      "case_user_doc_court",
+      "court_parts_claimant",
+      "court_parts_respondent",
+      "case_user_doc_result"
+    ],
+    "hlFragSize": 1000,
+    "groupLimit": 3,
+    "woBoost": false
+  },
+  "doNotSaveHistory": false
+}
