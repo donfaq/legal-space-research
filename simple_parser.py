@@ -8,6 +8,12 @@ class CourtOrdersParser:
         self.max_pages = 4603890
         self.start_page = start_page
         self.end_page = end_page
+        self.headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36",
+            "Content-Type": "application/json; charset=UTF-8",
+            "Origin": "https://bsr.sudrf.ru",
+            "Referer": "https://bsr.sudrf.ru/bigs/portal.html"
+        }
         with open('resources/paging.json', encoding='utf8') as f:
             self.paging = json.load(f)
         with open('resources/content.json', encoding='utf8') as f:
@@ -16,16 +22,11 @@ class CourtOrdersParser:
     def get_ids(self, current_page):
         payload = self.paging
         payload['request']['start'] = 10 * current_page
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36",
-            "Content-Type": "application/json; charset=UTF-8",
-            "Origin": "https://bsr.sudrf.ru",
-            "Referer": "https://bsr.sudrf.ru/bigs/portal.html"
-        }
+
         data = None
         try:
             r = requests.post("https://bsr.sudrf.ru/bigs/s.action",
-                              json=payload, headers=headers, timeout=120)
+                              json=payload, headers=self.headers, timeout=120)
             data = r.json()
             r.close()
         except requests.exceptions.ConnectionError:
@@ -38,16 +39,10 @@ class CourtOrdersParser:
     def get_document(self, doc_id):
         payload = self.content
         payload['request']['id'] = doc_id
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36",
-            "Content-Type": "application/json; charset=UTF-8",
-            "Origin": "https://bsr.sudrf.ru",
-            "Referer": "https://bsr.sudrf.ru/bigs/portal.html"
-        }
         data = None
         try:
             r = requests.post("https://bsr.sudrf.ru/bigs/showDocument.action",
-                              json=payload, headers=headers, timeout=120)
+                              json=payload, headers=self.headers, timeout=120)
             data = r.json()
             r.close()
         except requests.exceptions.ConnectionError:
