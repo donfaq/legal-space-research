@@ -32,6 +32,8 @@ class CourtOrdersParser:
             r.close()
         except requests.exceptions.ConnectionError:
             print(f'get_ids got ConnectionError on page {current_page}')
+        except requests.exceptions.ReadTimeout:
+            print(f'get_ids got ReadTimeout on page {current_page}')
         result = None
         if data:
             result = [doc['id'] for doc in data['searchResult']['documents']]
@@ -48,12 +50,14 @@ class CourtOrdersParser:
             r.close()
         except requests.exceptions.ConnectionError:
             print(f'get_document got ConnectionError on doc_id {doc_id}')
+        except requests.exceptions.ReadTimeout:
+            print(f'get_document got ReadTimeout on doc_id {doc_id}')
         return data
 
     def parse(self):
         current_page = self.start_page
+        docs = []
         while current_page <= self.end_page:
-            docs = []
             ids = self.get_ids(current_page)
             if ids:
                 for doc_id in ids:
@@ -61,8 +65,9 @@ class CourtOrdersParser:
                     doc = self.get_document(doc_id)
                     if doc:
                         docs.append(doc)
-                current_page += 1
                 yield docs
+                current_page += 1
+                docs = []
 
 
 if __name__ == '__main__':
