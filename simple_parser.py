@@ -1,6 +1,8 @@
-import requests
+import os
 import gzip
 import json
+
+import requests
 
 
 class CourtOrdersParser:
@@ -71,8 +73,13 @@ class CourtOrdersParser:
 
 
 if __name__ == '__main__':
+
     parser = CourtOrdersParser()
     data = []
+
+    if not os.path.exists('results/'):
+        os.mkdir('results')
+
     for i, docs in enumerate(parser.parse()):
         data += docs
         if i % 10 == 0:
