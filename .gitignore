@@ -1,1 +1,4 @@
 .idea/
+*.gz
+*.rest
+*.http
