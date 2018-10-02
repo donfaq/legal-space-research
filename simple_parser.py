@@ -9,7 +9,8 @@ class CourtOrdersParser:
         self.start_page = start_page
         self.end_page = end_page
         self.headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                          "(KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36",
             "Content-Type": "application/json; charset=UTF-8",
             "Origin": "https://bsr.sudrf.ru",
             "Referer": "https://bsr.sudrf.ru/bigs/portal.html"
@@ -72,5 +73,5 @@ if __name__ == '__main__':
         if i % 10 == 0:
             with gzip.GzipFile(f'results/res_{i}.json.gz', 'w') as fout:
                 fout.write(json.dumps(data, ensure_ascii=False).encode('utf-8'))
-                print("f'results/res_{i}.json.gz' saved")
+                print(f"'results/res_{i}.json.gz' saved")
             data = []
