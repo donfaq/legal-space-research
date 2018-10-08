@@ -2,6 +2,10 @@
 
 Исследование правового пространства, на примере Уголовного Кодекса Российской Федерации.
 
+## Запуск
+- Добавить папку data [лежит тут](https://yadi.sk/d/MhVSFVp_6MOOeg)
+- `pip install -r requirements.txt`
+
 ## Ссылки
 * Серия статей о проекте:
   - [Part 1](https://heterarchica.wordpress.com/2018/04/05/legal-space-modelling-using-natural-language-understanding-%D0%B8%D0%B7%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BC%D0%B0%D1%82%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9/)
