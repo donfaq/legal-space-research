@@ -19,7 +19,7 @@ article_pattern = re.compile(r"^Статья ([\d|\.]+)\. (.*)$")
 
 def main():
     result = []
-    with open('criminal_code.txt', 'r', encoding='utf-8') as f:
+    with open('data/criminal_code.txt', 'r', encoding='utf-8') as f:
         data = {}
         data['article'] = ''
         for line in f:
