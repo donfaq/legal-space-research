@@ -62,7 +62,7 @@ def main():
     result.append(dict(**data))
     for d in result:
         d['article'] = ' '.join(d['article'].replace('\n', ' ').split())
-    with open('criminal_code.json', 'w', encoding='utf8') as f:
+    with open('data/criminal_code.json', 'w', encoding='utf8') as f:
         json.dump(result, f, indent=4, ensure_ascii=False)
 if __name__ == '__main__':
     main() 
