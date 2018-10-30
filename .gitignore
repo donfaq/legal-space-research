@@ -12,3 +12,4 @@ data/
 tensorboard/
 cc_env/
 models/
+tmp/
