@@ -9,7 +9,7 @@ data/
 *.gexf
 *.html
 *.csv
-tensorboard/
-cc_env/
+runs/
 models/
 tmp/
+tmp_*/
