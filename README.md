@@ -3,7 +3,7 @@
 Language modelling techniques applied to Russian Criminal and Civil codes.
 
 ## Data
-- Main datafolder [лежит тут](https://drive.google.com/drive/folders/11xylGLQnz1NRLrzxyJQdc0E_avZZuoMK)
+- Main datafolder [HERE](https://drive.google.com/drive/folders/11xylGLQnz1NRLrzxyJQdc0E_avZZuoMK)
 - `pip install -r requirements.txt`
 
 ## Ссылки
